@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,21 +13,60 @@ namespace digital_image_processing
 {
     public partial class Form2 : Form
     {
+        private Bitmap imageB, imageA, processed;
         public Form2()
         {
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void btnLoadImageB_Click(object sender, EventArgs e)
         {
+            OpenFileDialog ofile = new OpenFileDialog();
+            ofile.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
+            if (DialogResult.OK == ofile.ShowDialog())
+            {
+                this.imageBBox.Image = new Bitmap(ofile.FileName);
+            }
+        }
+
+        private void btnSubtract_Click(object sender, EventArgs e)
+        {
+            processed = Processing.ConvertToSubtraction((Bitmap)this.imageABox.Image, (Bitmap)this.imageBBox.Image);
+            this.imageResultBox.Image = processed;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "PNG Image|*.png";
+                saveFileDialog.Title = "Save Image As";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap resultBitmap = new Bitmap(imageResultBox.Image);
+                    resultBitmap.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                    MessageBox.Show("Image saved successfully!");
+                }
+            }
+        }
+
+        private void btnLoadImageA_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofile = new OpenFileDialog();
+            ofile.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
+            if (DialogResult.OK == ofile.ShowDialog())
+            {
+                this.imageABox.Image = new Bitmap(ofile.FileName);
+            }
 
         }
+
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide(); 
-            Form1 mainForm = (Form1)this.Owner;
-            mainForm.Show();
+            this.Owner.Show();
         }
     }
 }

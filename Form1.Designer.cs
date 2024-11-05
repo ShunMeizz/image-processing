@@ -53,7 +53,6 @@
             this.picOriginalBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picOriginalBox.TabIndex = 0;
             this.picOriginalBox.TabStop = false;
-            this.picOriginalBox.Click += new System.EventHandler(this.picOriginal_Click);
             // 
             // picResultBox
             // 
@@ -67,11 +66,11 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Moonbeam", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(180, 369);
+            this.textBox1.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(181, 371);
             this.textBox1.Margin = new System.Windows.Forms.Padding(0);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(126, 20);
+            this.textBox1.Size = new System.Drawing.Size(126, 16);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = "Original Picture";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -79,10 +78,10 @@
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Moonbeam", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(495, 369);
+            this.textBox2.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(496, 371);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(112, 20);
+            this.textBox2.Size = new System.Drawing.Size(112, 16);
             this.textBox2.TabIndex = 3;
             this.textBox2.Text = "Result Picture";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -90,7 +89,7 @@
             // btnOpen
             // 
             this.btnOpen.BackColor = System.Drawing.SystemColors.Control;
-            this.btnOpen.Font = new System.Drawing.Font("Moonbeam", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpen.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpen.Location = new System.Drawing.Point(172, 35);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(130, 30);
@@ -102,7 +101,7 @@
             // btnCopy
             // 
             this.btnCopy.BackColor = System.Drawing.SystemColors.Control;
-            this.btnCopy.Font = new System.Drawing.Font("Moonbeam", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCopy.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCopy.Location = new System.Drawing.Point(400, 8);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(72, 30);
@@ -114,7 +113,7 @@
             // btnGray
             // 
             this.btnGray.BackColor = System.Drawing.SystemColors.Control;
-            this.btnGray.Font = new System.Drawing.Font("Moonbeam", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGray.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGray.Location = new System.Drawing.Point(476, 8);
             this.btnGray.Name = "btnGray";
             this.btnGray.Size = new System.Drawing.Size(70, 30);
@@ -126,7 +125,7 @@
             // btnColorInvention
             // 
             this.btnColorInvention.BackColor = System.Drawing.SystemColors.Control;
-            this.btnColorInvention.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnColorInvention.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnColorInvention.Location = new System.Drawing.Point(550, 8);
             this.btnColorInvention.Name = "btnColorInvention";
             this.btnColorInvention.Size = new System.Drawing.Size(141, 30);
@@ -138,7 +137,7 @@
             // btnHistogram
             // 
             this.btnHistogram.BackColor = System.Drawing.SystemColors.Control;
-            this.btnHistogram.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistogram.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistogram.Location = new System.Drawing.Point(410, 41);
             this.btnHistogram.Name = "btnHistogram";
             this.btnHistogram.Size = new System.Drawing.Size(101, 30);
@@ -150,7 +149,7 @@
             // btnSepia
             // 
             this.btnSepia.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSepia.Font = new System.Drawing.Font("Moonbeam", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSepia.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSepia.Location = new System.Drawing.Point(515, 41);
             this.btnSepia.Name = "btnSepia";
             this.btnSepia.Size = new System.Drawing.Size(65, 30);
@@ -162,7 +161,7 @@
             // btnSubtract
             // 
             this.btnSubtract.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSubtract.Font = new System.Drawing.Font("Moonbeam", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubtract.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubtract.Location = new System.Drawing.Point(584, 41);
             this.btnSubtract.Name = "btnSubtract";
             this.btnSubtract.Size = new System.Drawing.Size(99, 30);
@@ -217,7 +216,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SEBIAL CS345F2 - Image Processing ";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picOriginalBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResultBox)).EndInit();
             this.ResumeLayout(false);

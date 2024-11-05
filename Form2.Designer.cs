@@ -29,6 +29,19 @@
         private void InitializeComponent()
         {
             this.btnBack = new System.Windows.Forms.Button();
+            this.imageBBox = new System.Windows.Forms.PictureBox();
+            this.imageABox = new System.Windows.Forms.PictureBox();
+            this.imageResultBox = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.btnSubtract = new System.Windows.Forms.Button();
+            this.btnLoadImageB = new System.Windows.Forms.Button();
+            this.btnLoadImageA = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageABox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageResultBox)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBack
@@ -43,23 +56,157 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // imageBBox
+            // 
+            this.imageBBox.Location = new System.Drawing.Point(69, 132);
+            this.imageBBox.Name = "imageBBox";
+            this.imageBBox.Size = new System.Drawing.Size(165, 165);
+            this.imageBBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageBBox.TabIndex = 13;
+            this.imageBBox.TabStop = false;
+            // 
+            // imageABox
+            // 
+            this.imageABox.Location = new System.Drawing.Point(277, 132);
+            this.imageABox.Name = "imageABox";
+            this.imageABox.Size = new System.Drawing.Size(165, 165);
+            this.imageABox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageABox.TabIndex = 14;
+            this.imageABox.TabStop = false;
+            // 
+            // imageResultBox
+            // 
+            this.imageResultBox.Location = new System.Drawing.Point(517, 114);
+            this.imageResultBox.Name = "imageResultBox";
+            this.imageResultBox.Size = new System.Drawing.Size(215, 215);
+            this.imageResultBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageResultBox.TabIndex = 15;
+            this.imageResultBox.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(566, 366);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(126, 16);
+            this.textBox1.TabIndex = 16;
+            this.textBox1.Text = "Result Picture";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(318, 325);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(89, 14);
+            this.textBox2.TabIndex = 17;
+            this.textBox2.Text = "BACKGROUND";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(107, 325);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(89, 14);
+            this.textBox3.TabIndex = 18;
+            this.textBox3.Text = "IMAGE";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnSubtract
+            // 
+            this.btnSubtract.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSubtract.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubtract.Location = new System.Drawing.Point(513, 59);
+            this.btnSubtract.Name = "btnSubtract";
+            this.btnSubtract.Size = new System.Drawing.Size(99, 30);
+            this.btnSubtract.TabIndex = 19;
+            this.btnSubtract.Text = "SUBTRACT";
+            this.btnSubtract.UseVisualStyleBackColor = false;
+            this.btnSubtract.Click += new System.EventHandler(this.btnSubtract_Click);
+            // 
+            // btnLoadImageB
+            // 
+            this.btnLoadImageB.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLoadImageB.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadImageB.Location = new System.Drawing.Point(93, 84);
+            this.btnLoadImageB.Name = "btnLoadImageB";
+            this.btnLoadImageB.Size = new System.Drawing.Size(117, 30);
+            this.btnLoadImageB.TabIndex = 20;
+            this.btnLoadImageB.Text = "LOAD IMAGE";
+            this.btnLoadImageB.UseVisualStyleBackColor = false;
+            this.btnLoadImageB.Click += new System.EventHandler(this.btnLoadImageB_Click);
+            // 
+            // btnLoadImageA
+            // 
+            this.btnLoadImageA.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLoadImageA.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadImageA.Location = new System.Drawing.Point(287, 84);
+            this.btnLoadImageA.Name = "btnLoadImageA";
+            this.btnLoadImageA.Size = new System.Drawing.Size(143, 30);
+            this.btnLoadImageA.TabIndex = 21;
+            this.btnLoadImageA.Text = "LOAD BACKGROUND";
+            this.btnLoadImageA.UseVisualStyleBackColor = false;
+            this.btnLoadImageA.Click += new System.EventHandler(this.btnLoadImageA_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSave.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(615, 59);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(48, 30);
+            this.btnSave.TabIndex = 22;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::digital_image_processing.Properties.Resources.background_2;
             this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnLoadImageA);
+            this.Controls.Add(this.btnLoadImageB);
+            this.Controls.Add(this.btnSubtract);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.imageResultBox);
+            this.Controls.Add(this.imageABox);
+            this.Controls.Add(this.imageBBox);
             this.Controls.Add(this.btnBack);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SEBIAL CS345F2 - Image Processing ";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.imageBBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageABox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageResultBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.PictureBox imageBBox;
+        private System.Windows.Forms.PictureBox imageABox;
+        private System.Windows.Forms.PictureBox imageResultBox;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button btnSubtract;
+        private System.Windows.Forms.Button btnLoadImageB;
+        private System.Windows.Forms.Button btnLoadImageA;
+        private System.Windows.Forms.Button btnSave;
     }
 }

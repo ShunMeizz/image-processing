@@ -21,21 +21,11 @@ namespace digital_image_processing
             f2 = new Form2();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void picOriginal_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofile = new OpenFileDialog();
-            ofile.Filter = "Image File (*.bmp, *.jpg) | *.bmp; *.jpg";
+            ofile.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             if (DialogResult.OK == ofile.ShowDialog())
             {
                 this.picOriginalBox.Image = new Bitmap(ofile.FileName);

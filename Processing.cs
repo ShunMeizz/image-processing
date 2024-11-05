@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -123,6 +124,32 @@ namespace digital_image_processing
                 }
             return processed;
 
+        }
+
+        public static Bitmap ConvertToSubtraction (Bitmap imageA, Bitmap imageB)
+        {
+            Color targetGreen = Color.FromArgb(0, 255, 0);  
+            Bitmap processed = new Bitmap(imageB.Width, imageB.Height);
+            int threshold = 60;  
+
+            for (int x = 0; x < Math.Min(imageA.Width, imageB.Width); x++)
+            {
+                for (int y = 0; y < Math.Min(imageA.Height, imageB.Height); y++)
+                {
+                    Color pixel = imageB.GetPixel(x, y);
+                    Color backPixel = imageA.GetPixel(x, y);
+
+                    if (pixel.G > pixel.R + threshold && pixel.G > pixel.B + threshold)
+                    {
+                        processed.SetPixel(x, y, backPixel);
+                    }
+                    else
+                    {
+                        processed.SetPixel(x, y, pixel);
+                    }
+                }
+            }
+            return processed;
         }
     }
 }
