@@ -40,7 +40,9 @@
             this.btnSepia = new System.Windows.Forms.Button();
             this.btnSubtract = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnWebcam = new System.Windows.Forms.Button();
+            this.btnTurnOn = new System.Windows.Forms.Button();
+            this.btnTurnOff = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picOriginalBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResultBox)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +72,7 @@
             this.textBox1.Location = new System.Drawing.Point(181, 371);
             this.textBox1.Margin = new System.Windows.Forms.Padding(0);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(126, 16);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = "Original Picture";
@@ -81,6 +84,7 @@
             this.textBox2.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(496, 371);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(112, 16);
             this.textBox2.TabIndex = 3;
             this.textBox2.Text = "Result Picture";
@@ -182,17 +186,44 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnWebcam
+            // btnTurnOn
             // 
-            this.btnWebcam.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnWebcam.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWebcam.Location = new System.Drawing.Point(10, 194);
-            this.btnWebcam.Name = "btnWebcam";
-            this.btnWebcam.Size = new System.Drawing.Size(103, 46);
-            this.btnWebcam.TabIndex = 12;
-            this.btnWebcam.Text = "Try it with ur WEBCAM";
-            this.btnWebcam.UseVisualStyleBackColor = false;
-            this.btnWebcam.Click += new System.EventHandler(this.btnWebcam_Click);
+            this.btnTurnOn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnTurnOn.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTurnOn.Location = new System.Drawing.Point(12, 178);
+            this.btnTurnOn.Name = "btnTurnOn";
+            this.btnTurnOn.Size = new System.Drawing.Size(81, 28);
+            this.btnTurnOn.TabIndex = 12;
+            this.btnTurnOn.Text = "TURN ON";
+            this.btnTurnOn.UseVisualStyleBackColor = false;
+            this.btnTurnOn.Click += new System.EventHandler(this.btnTurnOn_Click);
+            // 
+            // btnTurnOff
+            // 
+            this.btnTurnOff.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnTurnOff.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTurnOff.Location = new System.Drawing.Point(12, 212);
+            this.btnTurnOff.Name = "btnTurnOff";
+            this.btnTurnOff.Size = new System.Drawing.Size(81, 28);
+            this.btnTurnOff.TabIndex = 13;
+            this.btnTurnOff.Text = "TURN OFF";
+            this.btnTurnOff.UseVisualStyleBackColor = false;
+            this.btnTurnOff.Click += new System.EventHandler(this.btnTurnOff_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(7, 142);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(93, 32);
+            this.textBox3.TabIndex = 14;
+            this.textBox3.Text = "Try it with your WEBCAM";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
@@ -200,7 +231,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::digital_image_processing.Properties.Resources.background1;
             this.ClientSize = new System.Drawing.Size(784, 411);
-            this.Controls.Add(this.btnWebcam);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.btnTurnOff);
+            this.Controls.Add(this.btnTurnOn);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnSubtract);
             this.Controls.Add(this.btnSepia);
@@ -216,6 +249,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SEBIAL CS345F2 - Image Processing ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picOriginalBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResultBox)).EndInit();
             this.ResumeLayout(false);
@@ -237,7 +271,9 @@
         private System.Windows.Forms.Button btnSepia;
         private System.Windows.Forms.Button btnSubtract;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnWebcam;
+        private System.Windows.Forms.Button btnTurnOn;
+        private System.Windows.Forms.Button btnTurnOff;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 

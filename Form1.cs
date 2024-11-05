@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebCamLib;
 
 namespace digital_image_processing
 {
@@ -14,6 +15,7 @@ namespace digital_image_processing
     {
         private Bitmap processed;
         private Form2 f2;
+        Device []devices;
 
         public Form1()
         {
@@ -88,10 +90,23 @@ namespace digital_image_processing
 
         }
 
-
-        private void btnWebcam_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-
+            devices = DeviceManager.GetAllDevices();
+            if (devices == null)
+            {
+                MessageBox.Show("No camera devices found.");
+            }
         }
+        private void btnTurnOn_Click(object sender, EventArgs e)
+        {
+            devices[0].ShowWindow(picOriginalBox);
+        }
+        private void btnTurnOff_Click(object sender, EventArgs e)
+        {
+            devices[0].Stop();
+        }
+
+        
     }
 }
