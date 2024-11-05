@@ -13,7 +13,7 @@ namespace digital_image_processing
 {
     public partial class Form2 : Form
     {
-        private Bitmap imageB, imageA, processed;
+        private Bitmap imageB, imageA;
         public Form2()
         {
             InitializeComponent();
@@ -31,8 +31,7 @@ namespace digital_image_processing
 
         private void btnSubtract_Click(object sender, EventArgs e)
         {
-            processed = Processing.ConvertToSubtraction((Bitmap)this.imageABox.Image, (Bitmap)this.imageBBox.Image);
-            this.imageResultBox.Image = processed;
+            this.imageResultBox.Image = Processing.ConvertToSubtraction((Bitmap)this.imageABox.Image, (Bitmap)this.imageBBox.Image);
         }
 
         private void btnSave_Click(object sender, EventArgs e)

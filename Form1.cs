@@ -13,7 +13,6 @@ namespace digital_image_processing
 {
     public partial class Form1 : Form
     {
-        private Bitmap processed;
         private Form2 f2;
         Device []devices;
 
@@ -36,33 +35,29 @@ namespace digital_image_processing
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            processed = Processing.CreateCopy((Bitmap)this.picOriginalBox.Image);
-            this.picResultBox.Image = processed;
+            
+            this.picResultBox.Image = Processing.CreateCopy((Bitmap)this.picOriginalBox.Image);
         }
 
         private void btnGray_Click(object sender, EventArgs e)
         {
-            processed = Processing.ConvertToGray((Bitmap)this.picOriginalBox.Image);
-            this.picResultBox.Image = processed;
+            this.picResultBox.Image = Processing.ConvertToGray((Bitmap)this.picOriginalBox.Image);
         }
 
         private void btnColorInvention_Click(object sender, EventArgs e)
         {
-            processed = Processing.ConvertToColorInversion((Bitmap)this.picOriginalBox.Image);
-            this.picResultBox.Image = processed;
+            this.picResultBox.Image = Processing.ConvertToColorInversion((Bitmap)this.picOriginalBox.Image);
         }
 
         private void btnHistogram_Click(object sender, EventArgs e)
         {
-            processed = Processing.ConvertToHistogram((Bitmap)this.picOriginalBox.Image);
-            this.picResultBox.Image = processed;
+            this.picResultBox.Image = Processing.ConvertToHistogram((Bitmap)this.picOriginalBox.Image);
 
         }
 
         private void btnSepia_Click(object sender, EventArgs e)
         {
-            processed = Processing.ConvertToSepia((Bitmap)this.picOriginalBox.Image);
-            this.picResultBox.Image = processed;
+            this.picResultBox.Image = Processing.ConvertToSepia((Bitmap)this.picOriginalBox.Image);
 
         }
 
