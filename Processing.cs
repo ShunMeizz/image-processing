@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -151,5 +152,6 @@ namespace digital_image_processing
             }
             return processed;
         }
+
     }
 }

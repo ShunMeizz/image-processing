@@ -39,6 +39,7 @@
             this.btnLoadImageB = new System.Windows.Forms.Button();
             this.btnLoadImageA = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.imageBBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageABox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageResultBox)).BeginInit();
@@ -46,11 +47,11 @@
             // 
             // btnBack
             // 
-            this.btnBack.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnBack.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(22, 26);
+            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnBack.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Location = new System.Drawing.Point(12, 12);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(66, 30);
+            this.btnBack.Size = new System.Drawing.Size(61, 25);
             this.btnBack.TabIndex = 12;
             this.btnBack.Text = "BACK";
             this.btnBack.UseVisualStyleBackColor = false;
@@ -92,7 +93,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(126, 16);
             this.textBox1.TabIndex = 16;
-            this.textBox1.Text = "Result Picture";
+            this.textBox1.Text = "RESULT PHOTO";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox2
@@ -123,23 +124,25 @@
             // 
             // btnSubtract
             // 
-            this.btnSubtract.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSubtract.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubtract.Location = new System.Drawing.Point(513, 59);
+            this.btnSubtract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnSubtract.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSubtract.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubtract.Location = new System.Drawing.Point(365, 24);
             this.btnSubtract.Name = "btnSubtract";
-            this.btnSubtract.Size = new System.Drawing.Size(99, 30);
+            this.btnSubtract.Size = new System.Drawing.Size(175, 25);
             this.btnSubtract.TabIndex = 19;
-            this.btnSubtract.Text = "SUBTRACT";
+            this.btnSubtract.Text = "PERFORM SUBTRACTION";
             this.btnSubtract.UseVisualStyleBackColor = false;
             this.btnSubtract.Click += new System.EventHandler(this.btnSubtract_Click);
             // 
             // btnLoadImageB
             // 
-            this.btnLoadImageB.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLoadImageB.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.btnLoadImageB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLoadImageB.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadImageB.Location = new System.Drawing.Point(93, 84);
+            this.btnLoadImageB.Location = new System.Drawing.Point(122, 24);
             this.btnLoadImageB.Name = "btnLoadImageB";
-            this.btnLoadImageB.Size = new System.Drawing.Size(117, 30);
+            this.btnLoadImageB.Size = new System.Drawing.Size(91, 25);
             this.btnLoadImageB.TabIndex = 20;
             this.btnLoadImageB.Text = "LOAD IMAGE";
             this.btnLoadImageB.UseVisualStyleBackColor = false;
@@ -147,11 +150,12 @@
             // 
             // btnLoadImageA
             // 
-            this.btnLoadImageA.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLoadImageA.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.btnLoadImageA.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLoadImageA.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadImageA.Location = new System.Drawing.Point(287, 84);
+            this.btnLoadImageA.Location = new System.Drawing.Point(222, 24);
             this.btnLoadImageA.Name = "btnLoadImageA";
-            this.btnLoadImageA.Size = new System.Drawing.Size(143, 30);
+            this.btnLoadImageA.Size = new System.Drawing.Size(135, 25);
             this.btnLoadImageA.TabIndex = 21;
             this.btnLoadImageA.Text = "LOAD BACKGROUND";
             this.btnLoadImageA.UseVisualStyleBackColor = false;
@@ -159,15 +163,30 @@
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnSave.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(615, 59);
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(549, 24);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(48, 30);
+            this.btnSave.Size = new System.Drawing.Size(99, 25);
             this.btnSave.TabIndex = 22;
-            this.btnSave.Text = "SAVE";
+            this.btnSave.Text = "SAVE IMAGE";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(-1, 2);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(664, 64);
+            this.textBox4.TabIndex = 23;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form2
             // 
@@ -186,9 +205,10 @@
             this.Controls.Add(this.imageABox);
             this.Controls.Add(this.imageBBox);
             this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.textBox4);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SEBIAL CS345F2 - Image Processing ";
+            this.Text = "Doraemon\'s Image Editor!";
             ((System.ComponentModel.ISupportInitialize)(this.imageBBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageABox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageResultBox)).EndInit();
@@ -210,5 +230,6 @@
         private System.Windows.Forms.Button btnLoadImageB;
         private System.Windows.Forms.Button btnLoadImageA;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }

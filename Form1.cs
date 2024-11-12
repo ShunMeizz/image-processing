@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using ImageProcess2;
+using Microsoft.VisualBasic;
+using static digital_image_processing.BasicDIP;
 
 namespace digital_image_processing
 {
@@ -14,6 +17,22 @@ namespace digital_image_processing
         Inverted,
         Histogram
     }
+    public enum EffectType
+    {
+        Smoothing,
+        GaussianBlur,
+        Sharpening,
+        MeanRemoval,
+        EdgeEnhance,
+        EdgeDetect,
+        EmbossLaplacian,
+        EmbossHorizVert,
+        EmbossAllDir,
+        EmbossLossy,
+        EmbossHoriz,
+        EmbossVert, 
+    }
+
 
     public partial class Form1 : Form
     {
@@ -112,7 +131,7 @@ namespace digital_image_processing
             switch (currentFilter)
             {
                 case FilterType.GreyScale:
-                    BitmapFilter.GrayScale(frame);
+                    BitmapFilter.GrayScale(frame); 
                     break;
                 case FilterType.Sepia:
                     BitmapFilter.Sepia(frame);
@@ -122,7 +141,7 @@ namespace digital_image_processing
                     break;
                 case FilterType.Histogram:
                     Bitmap histogramImage = null;
-                    BasicDIP.Histogram(ref frame, ref histogramImage); 
+                    BasicDIP.Histogram(ref frame, ref histogramImage);  
                     frame = histogramImage;
                     break;
                 default:
@@ -133,11 +152,11 @@ namespace digital_image_processing
             picResultBox.Image = frame;
         }
 
-        private void ApplyImageFilter(FilterType filterType)
+        private void ApplyImageFilter()
         {
             Bitmap image = (Bitmap)picOriginalBox.Image.Clone();
 
-            switch (filterType)
+            switch (currentFilter)
             {
                 case FilterType.GreyScale:
                     picResultBox.Image = Processing.ConvertToGray(image);
@@ -155,14 +174,12 @@ namespace digital_image_processing
                     break;
             }
 
-            SetFilter(filterType);
+            SetFilter();
         }
 
 
-        private void SetFilter(FilterType filterType)
+        private void SetFilter()
         {
-            currentFilter = filterType;
-
             if (isVideoOn)
             {
                 if (!filterTimer.Enabled)
@@ -235,28 +252,28 @@ namespace digital_image_processing
             }
             else
             {
-                picResultBox.Image = Processing.CreateCopy((Bitmap)picOriginalBox.Image.Clone());
+                this.picResultBox.Image = Processing.CreateCopy((Bitmap)this.picOriginalBox.Image);
             }
         }
 
         private void btnGray_Click(object sender, EventArgs e)
         {
-            ApplyImageFilter(FilterType.GreyScale);
+            ApplyImageFilter();
         }
 
         private void btnColorInversion_Click(object sender, EventArgs e)
         {
-            ApplyImageFilter(FilterType.Inverted);
+            ApplyImageFilter();
         }
 
         private void btnHistogram_Click(object sender, EventArgs e)
         {
-            ApplyImageFilter(FilterType.Histogram);
+            ApplyImageFilter();
         }
 
         private void btnSepia_Click(object sender, EventArgs e)
         {
-            ApplyImageFilter(FilterType.Sepia);
+            ApplyImageFilter();
         }
         private void btnSubtract_Click(object sender, EventArgs e)
         {
@@ -265,5 +282,129 @@ namespace digital_image_processing
             f2.Show();
             this.Hide();
         }
+
+        // PART 3: Convolution 
+
+        public static int GetEffectWeight(string prompt, string title, int defaultValue)
+        {
+            string input = Microsoft.VisualBasic.Interaction.InputBox(prompt, title, defaultValue.ToString());
+
+            if (int.TryParse(input, out int nWeight))
+            {
+                return nWeight;
+            }
+            else
+            {
+                MessageBox.Show("Invalid input. Using default value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return defaultValue;
+            }
+        }
+
+
+        private void ApplyImageEffects(EffectType effectType)
+        {
+            if (picOriginalBox.Image == null)
+            {
+                MessageBox.Show("Please load an image first.", "No Image Loaded", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Bitmap image = (Bitmap)picOriginalBox.Image.Clone();
+            int weight;
+
+            switch (effectType)
+            {
+                case EffectType.Smoothing:
+                    BitmapFilter.Smooth(image, 1);  // Smoothing with a static value
+                    break;
+
+                case EffectType.GaussianBlur:
+                    weight = GetEffectWeight("Enter center value for Gaussian Blur:", "Gaussian Blur Weight", 4);
+                    BitmapFilter.GaussianBlur(image, weight);
+                    break;
+
+                case EffectType.Sharpening:
+                    weight = GetEffectWeight("Enter center value for Sharpening:", "Sharpening Weight", 11);
+                    BitmapFilter.Sharpen(image, weight);
+                    break;
+
+                case EffectType.MeanRemoval:
+                    weight = GetEffectWeight("Enter center value for Mean Removal:", "Mean Removal Weight", 9);
+                    BitmapFilter.MeanRemoval(image, weight);
+                    break;
+
+
+                case EffectType.EmbossLaplacian:
+                    BitmapFilter.EmbossLaplacian(image);
+                    break;
+
+                case EffectType.EmbossHorizVert:
+                case EffectType.EmbossAllDir:
+                case EffectType.EmbossLossy:
+                case EffectType.EmbossHoriz:
+                case EffectType.EmbossVert:
+                    EMBOSS embossType = GetEmbossType();
+                    BasicDIP.Emboss(image, embossType);
+                    break;
+
+                default:
+                    break;
+            }
+
+            picResultBox.Image = image;
+        }
+
+
+        private void btnSmoothing_Click(object sender, EventArgs e)
+        {
+            ApplyImageEffects(EffectType.Smoothing);
+        }
+        private void btnGaussian_Click(object sender, EventArgs e)
+        {
+            ApplyImageEffects(EffectType.GaussianBlur);
+        }
+
+        private void btnSharpen_Click(object sender, EventArgs e)
+        {
+            ApplyImageEffects(EffectType.Sharpening);
+        }
+
+        private void btnMeanRemoval_Click(object sender, EventArgs e)
+        {
+            ApplyImageEffects(EffectType.MeanRemoval);
+        }
+        private EMBOSS GetEmbossType()
+        {
+            string input = Microsoft.VisualBasic.Interaction.InputBox(
+                "Select Emboss Type:\n" +
+                "1: Horizontal Vertical\n" +
+                "2: All Direction\n" +
+                "3: Lossy\n" +
+                "4: Horizontal Only\n" +
+                "5: Vertical Only",
+                "Emboss Type",
+                "1");
+
+            switch (input)
+            {
+                case "1":
+                    return EMBOSS.HORIZONTAL_VERTICAL;
+                case "2":
+                    return EMBOSS.ALL_DIRECTION;
+                case "3":
+                    return EMBOSS.LOSSY;
+                case "4":
+                    return EMBOSS.HORIZONTAL_ONLY;
+                case "5":
+                    return EMBOSS.VERTICAL_ONLY;
+                default:
+                    return EMBOSS.HORIZONTAL_VERTICAL;
+            }
+        }
+        private void btnEmbossing_Click(object sender, EventArgs e)
+        {
+            ApplyImageEffects(EffectType.EmbossHorizVert);
+        }
+
     }
 }
