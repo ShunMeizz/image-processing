@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace HNUDIP
+namespace digital_image_processing
 {
-    static class ImageProcess
+    static class BasicDIP
     {
 
         public static void copyImage(ref Bitmap a, ref Bitmap b)

@@ -68,6 +68,7 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox1.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(181, 371);
             this.textBox1.Margin = new System.Windows.Forms.Padding(0);
@@ -81,6 +82,7 @@
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox2.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(496, 371);
             this.textBox2.Name = "textBox2";
@@ -136,7 +138,7 @@
             this.btnColorInvention.TabIndex = 7;
             this.btnColorInvention.Text = "COLOR INVENTION";
             this.btnColorInvention.UseVisualStyleBackColor = false;
-            this.btnColorInvention.Click += new System.EventHandler(this.btnColorInvention_Click);
+            this.btnColorInvention.Click += new System.EventHandler(this.btnColorInversion_Click);
             // 
             // btnHistogram
             // 
@@ -246,6 +248,9 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.picResultBox);
             this.Controls.Add(this.picOriginalBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SEBIAL CS345F2 - Image Processing ";

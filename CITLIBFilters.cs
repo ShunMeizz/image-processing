@@ -107,8 +107,41 @@ namespace ImageProcess2
 
 			return true;
 		}
+        public static void Sepia(Bitmap b)
+        {
 
-		public static bool Brightness(Bitmap b, int nBrightness)
+            int dstHeight = b.Height;
+            int dstWidth = b.Width;
+
+            BitmapData bmProcessed = b.LockBits(
+                new Rectangle(0, 0, dstWidth, dstHeight),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            int offSet = bmProcessed.Stride - dstWidth * 3;
+
+            unsafe
+            {
+                byte* p = (byte*)(void*)bmProcessed.Scan0;
+
+                for (int i = 0; i < dstHeight; i++)
+                {
+                    for (int j = 0; j < dstWidth; j++)
+                    {
+                        p[0] = (byte)Math.Min(255, p[2] * 0.272 + p[1] * 0.534 + p[0] * 0.131);
+                        p[1] = (byte)Math.Min(255, p[2] * 0.349 + p[1] * 0.686 + p[0] * 0.168);
+                        p[2] = (byte)Math.Min(255, p[2] * 0.393 + p[1] * 0.769 + p[0] * 0.189);
+
+                        p += 3;
+                    }
+
+                    p += offSet;
+                }
+            }
+
+            b.UnlockBits(bmProcessed);
+        }
+
+        public static bool Brightness(Bitmap b, int nBrightness)
 		{
 			if (nBrightness < -255 || nBrightness > 255)
 				return false;
