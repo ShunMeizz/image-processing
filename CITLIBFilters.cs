@@ -457,7 +457,7 @@ namespace ImageProcess2
 
 			return  BitmapFilter.Conv3x3(b, m);
 		}
-		public static bool EmbossLaplacian(Bitmap b)
+		public static bool EmbossLaplascian(Bitmap b)
 		{
 			ConvMatrix m = new ConvMatrix();
 			m.SetAll(-1);

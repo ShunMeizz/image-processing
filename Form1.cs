@@ -6,7 +6,7 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using ImageProcess2;
 using Microsoft.VisualBasic;
-using static digital_image_processing.BasicDIP;
+using static digital_image_processing.Processing;
 
 namespace digital_image_processing
 {
@@ -23,9 +23,7 @@ namespace digital_image_processing
         GaussianBlur,
         Sharpening,
         MeanRemoval,
-        EdgeEnhance,
-        EdgeDetect,
-        EmbossLaplacian,
+        EmbossLaplascian,
         EmbossHorizVert,
         EmbossAllDir,
         EmbossLossy,
@@ -39,6 +37,7 @@ namespace digital_image_processing
         private Form2 f2;
         private bool isVideoOn = false;
         private FilterType currentFilter;
+        private EffectType currentEffect;
         private Timer filterTimer;
         private FilterInfoCollection videoDevices;
         private VideoCaptureDevice videoSource;
@@ -241,6 +240,8 @@ namespace digital_image_processing
             }
             return null; 
         }
+
+        // PART 1: For DIP - Copy, GrayScale, Inversion, Histogram, Sepia
         private void btnCopy_Click(object sender, EventArgs e)
         {
             if (isVideoOn)
@@ -275,6 +276,8 @@ namespace digital_image_processing
         {
             ApplyImageFilter();
         }
+
+        // PART 2: For DIP - Subtraction
         private void btnSubtract_Click(object sender, EventArgs e)
         {
             btnTurnOff_Click(sender, e);
@@ -283,7 +286,7 @@ namespace digital_image_processing
             this.Hide();
         }
 
-        // PART 3: Convolution 
+        // PART 3: For Convolution Matrix Processes
 
         public static int GetEffectWeight(string prompt, string title, int defaultValue)
         {
@@ -301,7 +304,7 @@ namespace digital_image_processing
         }
 
 
-        private void ApplyImageEffects(EffectType effectType)
+        private void ApplyImageEffects()
         {
             if (picOriginalBox.Image == null)
             {
@@ -312,10 +315,10 @@ namespace digital_image_processing
             Bitmap image = (Bitmap)picOriginalBox.Image.Clone();
             int weight;
 
-            switch (effectType)
+            switch (currentEffect)
             {
                 case EffectType.Smoothing:
-                    BitmapFilter.Smooth(image, 1);  // Smoothing with a static value
+                    BitmapFilter.Smooth(image, 1);  
                     break;
 
                 case EffectType.GaussianBlur:
@@ -333,20 +336,15 @@ namespace digital_image_processing
                     BitmapFilter.MeanRemoval(image, weight);
                     break;
 
-
-                case EffectType.EmbossLaplacian:
-                    BitmapFilter.EmbossLaplacian(image);
-                    break;
-
+                case EffectType.EmbossLaplascian:
                 case EffectType.EmbossHorizVert:
                 case EffectType.EmbossAllDir:
                 case EffectType.EmbossLossy:
                 case EffectType.EmbossHoriz:
                 case EffectType.EmbossVert:
                     EMBOSS embossType = GetEmbossType();
-                    BasicDIP.Emboss(image, embossType);
+                    Emboss(image, embossType);
                     break;
-
                 default:
                     break;
             }
@@ -357,53 +355,61 @@ namespace digital_image_processing
 
         private void btnSmoothing_Click(object sender, EventArgs e)
         {
-            ApplyImageEffects(EffectType.Smoothing);
+            currentEffect = EffectType.Smoothing;
+            ApplyImageEffects();
         }
         private void btnGaussian_Click(object sender, EventArgs e)
         {
-            ApplyImageEffects(EffectType.GaussianBlur);
+            currentEffect = EffectType.GaussianBlur;
+            ApplyImageEffects();
         }
 
         private void btnSharpen_Click(object sender, EventArgs e)
         {
-            ApplyImageEffects(EffectType.Sharpening);
+            currentEffect = EffectType.Sharpening;
+            ApplyImageEffects();
         }
 
         private void btnMeanRemoval_Click(object sender, EventArgs e)
         {
-            ApplyImageEffects(EffectType.MeanRemoval);
+            currentEffect = EffectType.MeanRemoval;
+            ApplyImageEffects();
         }
         private EMBOSS GetEmbossType()
         {
             string input = Microsoft.VisualBasic.Interaction.InputBox(
                 "Select Emboss Type:\n" +
-                "1: Horizontal Vertical\n" +
-                "2: All Direction\n" +
-                "3: Lossy\n" +
-                "4: Horizontal Only\n" +
-                "5: Vertical Only",
+                "1: Laplascian\n" +
+                "2: Horizontal Vertical\n" +
+                "3: All Direction\n" +
+                "4: Lossy\n" +
+                "5: Horizontal Only\n" +
+                "6: Vertical Only",
                 "Emboss Type",
                 "1");
 
             switch (input)
             {
                 case "1":
-                    return EMBOSS.HORIZONTAL_VERTICAL;
+                    return EMBOSS.LAPLASCIAN;
                 case "2":
-                    return EMBOSS.ALL_DIRECTION;
+                    return EMBOSS.HORIZONTAL_VERTICAL;
                 case "3":
-                    return EMBOSS.LOSSY;
+                    return EMBOSS.ALL_DIRECTION;
                 case "4":
-                    return EMBOSS.HORIZONTAL_ONLY;
+                    return EMBOSS.LOSSY;
                 case "5":
+                    return EMBOSS.HORIZONTAL_ONLY;
+                case "6":
                     return EMBOSS.VERTICAL_ONLY;
                 default:
-                    return EMBOSS.HORIZONTAL_VERTICAL;
+                    return EMBOSS.LAPLASCIAN;
             }
         }
         private void btnEmbossing_Click(object sender, EventArgs e)
         {
-            ApplyImageEffects(EffectType.EmbossHorizVert);
+            currentEffect = EffectType.EmbossLaplascian;
+            ApplyImageEffects();
         }
 
     }
