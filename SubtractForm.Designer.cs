@@ -1,6 +1,6 @@
 ﻿namespace digital_image_processing
 {
-    partial class Form2
+    partial class SubtractForm
     {
         /// <summary>
         /// Required designer variable.
@@ -47,9 +47,10 @@
             // 
             // btnBack
             // 
-            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnBack.BackColor = System.Drawing.Color.Salmon;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBack.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(12, 12);
+            this.btnBack.Location = new System.Drawing.Point(12, 9);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(61, 25);
             this.btnBack.TabIndex = 12;
@@ -87,7 +88,7 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Moonbeam", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(566, 366);
             this.textBox1.Margin = new System.Windows.Forms.Padding(0);
             this.textBox1.Name = "textBox1";
@@ -127,11 +128,11 @@
             this.btnSubtract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnSubtract.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSubtract.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubtract.Location = new System.Drawing.Point(365, 24);
+            this.btnSubtract.Location = new System.Drawing.Point(517, 68);
             this.btnSubtract.Name = "btnSubtract";
-            this.btnSubtract.Size = new System.Drawing.Size(175, 25);
+            this.btnSubtract.Size = new System.Drawing.Size(106, 25);
             this.btnSubtract.TabIndex = 19;
-            this.btnSubtract.Text = "PERFORM SUBTRACTION";
+            this.btnSubtract.Text = "DO SUBTRACTION";
             this.btnSubtract.UseVisualStyleBackColor = false;
             this.btnSubtract.Click += new System.EventHandler(this.btnSubtract_Click);
             // 
@@ -140,7 +141,7 @@
             this.btnLoadImageB.BackColor = System.Drawing.Color.PaleTurquoise;
             this.btnLoadImageB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLoadImageB.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadImageB.Location = new System.Drawing.Point(122, 24);
+            this.btnLoadImageB.Location = new System.Drawing.Point(106, 89);
             this.btnLoadImageB.Name = "btnLoadImageB";
             this.btnLoadImageB.Size = new System.Drawing.Size(91, 25);
             this.btnLoadImageB.TabIndex = 20;
@@ -153,7 +154,7 @@
             this.btnLoadImageA.BackColor = System.Drawing.Color.PaleTurquoise;
             this.btnLoadImageA.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLoadImageA.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadImageA.Location = new System.Drawing.Point(222, 24);
+            this.btnLoadImageA.Location = new System.Drawing.Point(294, 89);
             this.btnLoadImageA.Name = "btnLoadImageA";
             this.btnLoadImageA.Size = new System.Drawing.Size(135, 25);
             this.btnLoadImageA.TabIndex = 21;
@@ -166,11 +167,11 @@
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSave.Font = new System.Drawing.Font("Moonbeam", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(549, 24);
+            this.btnSave.Location = new System.Drawing.Point(628, 68);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(99, 25);
+            this.btnSave.Size = new System.Drawing.Size(39, 25);
             this.btnSave.TabIndex = 22;
-            this.btnSave.Text = "SAVE IMAGE";
+            this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -184,11 +185,11 @@
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(664, 64);
+            this.textBox4.Size = new System.Drawing.Size(86, 40);
             this.textBox4.TabIndex = 23;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Form2
+            // SubtractForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -206,7 +207,8 @@
             this.Controls.Add(this.imageBBox);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.textBox4);
-            this.Name = "Form2";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Name = "SubtractForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Doraemon\'s Image Editor!";
             ((System.ComponentModel.ISupportInitialize)(this.imageBBox)).EndInit();

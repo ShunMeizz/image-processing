@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace digital_image_processing
 {
-    public partial class Form2 : Form
+    public partial class SubtractForm : Form
     {
         private Bitmap imageB, imageA;
-        public Form2()
+        public SubtractForm()
         {
             InitializeComponent();
         }

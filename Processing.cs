@@ -164,6 +164,12 @@ namespace digital_image_processing
 
             switch (Etype)
             {
+                case EMBOSS.LAPLASCIAN:
+                    m.SetAll(-1);
+                    m.TopMid = m.MidLeft = m.MidRight = m.BottomMid = 0;
+                    m.Pixel = 4;
+                    m.Offset = 127;
+                    break;
                 case EMBOSS.HORIZONTAL_VERTICAL:
                     m.SetAll(0);
                     m.TopMid = m.MidLeft = m.MidRight = m.BottomMid = -1;

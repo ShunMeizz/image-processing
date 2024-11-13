@@ -32,9 +32,9 @@ namespace digital_image_processing
     }
 
 
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        private Form2 f2;
+        private SubtractForm f2; 
         private bool isVideoOn = false;
         private FilterType currentFilter;
         private EffectType currentEffect;
@@ -43,10 +43,10 @@ namespace digital_image_processing
         private VideoCaptureDevice videoSource;
         private readonly object imageLock = new object();
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
-            f2 = new Form2();
+            f2 = new SubtractForm();
             InitializeFilterTimer();
         }
 
@@ -125,7 +125,11 @@ namespace digital_image_processing
         {
             if (picOriginalBox.Image == null) return;
 
-            Bitmap frame = (Bitmap)picOriginalBox.Image.Clone();
+            Bitmap frame;
+            lock (imageLock)
+            {
+                frame = (Bitmap)this.picOriginalBox.Image.Clone();
+            }
 
             switch (currentFilter)
             {
@@ -259,21 +263,25 @@ namespace digital_image_processing
 
         private void btnGray_Click(object sender, EventArgs e)
         {
+            currentFilter = FilterType.GreyScale;
             ApplyImageFilter();
         }
 
         private void btnColorInversion_Click(object sender, EventArgs e)
         {
+            currentFilter = FilterType.Inverted;
             ApplyImageFilter();
         }
 
         private void btnHistogram_Click(object sender, EventArgs e)
         {
+            currentFilter = FilterType.Histogram;
             ApplyImageFilter();
         }
 
         private void btnSepia_Click(object sender, EventArgs e)
         {
+            currentFilter = FilterType.Sepia;
             ApplyImageFilter();
         }
 
@@ -412,5 +420,8 @@ namespace digital_image_processing
             ApplyImageEffects();
         }
 
+        private void btnCoinCounter_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
