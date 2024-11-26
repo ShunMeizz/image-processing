@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="basicDIP.cs" />
-    <Compile Include="Circle.cs" />
     <Compile Include="CITLIBFilters.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceManager.cs" />
@@ -113,6 +112,7 @@
     <None Include="Resources\background1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\part4Img.png" />
     <Content Include="Resources\part1Img.png" />
     <Content Include="Resources\part2Img.png" />
     <Content Include="Resources\part3Img.png" />

@@ -15,7 +15,7 @@ CS345 - Intelligent Systems
 [![Part3Img](Resources/part3Img.png)](Resources/part3Img.png)
 
 ## Part 4: Coins Counter
-
+[![Part4Img](Resources/part4Img.png)](Resources/part4Img.png)
 
 
 ---

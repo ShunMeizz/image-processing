@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using ImageProcess2;
 using Microsoft.VisualBasic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static digital_image_processing.Processing;
 
 namespace digital_image_processing
@@ -421,7 +423,7 @@ namespace digital_image_processing
             ApplyImageEffects();
         }
 
-        private void btnCoinCounter_Click(object sender, EventArgs e)
+        private async void btnCoinCounter_Click(object sender, EventArgs e)
         {
             if (picOriginalBox.Image == null)
             {
@@ -431,22 +433,49 @@ namespace digital_image_processing
 
             try
             {
-                Bitmap originalImage = (Bitmap)picOriginalBox.Image.Clone();
-                Bitmap processedImage = CleanImage(originalImage);
-                Dictionary<string, double> coinResults = ClassifyPesoCoins(processedImage);
-                double totalValue = coinResults["Value"];
-                MessageBox.Show($"Total Coin Value: ₱{totalValue:F2}", "Coin Counter", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                picResultBox.Image = processedImage;
+                progressBar.Visible = true;
+                progressBar.Style = ProgressBarStyle.Marquee;
+                progressBar.MarqueeAnimationSpeed = 30;
+
+                Bitmap originalImage = null;
+
+                lock (picOriginalBox.Image)
+                {
+                    originalImage = (Bitmap)picOriginalBox.Image.Clone();
+                }
+
+                await Task.Run(() =>
+                {
+                    using (Bitmap processedImage = CleanImage(originalImage))
+                    {
+                        Dictionary<string, double> coinResults = ClassifyPesoCoins(processedImage);
+                        double totalValue = coinResults["Value"];
+
+                        this.Invoke(new Action(() =>
+                        {
+                            picResultBox.Image = new Bitmap(processedImage);
+                            progressBar.Visible = false; 
+                            MessageBox.Show($"Total Coin Value: ₱{totalValue:F2}", "Coin Counter", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }));
+                    }
+                });
             }
             catch (Exception ex)
-            {
+            { 
+                progressBar.Visible = false;
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private Bitmap CleanImage(Bitmap original)
         {
-            Bitmap processed = new Bitmap(original);
+            Bitmap processed = new Bitmap(original.Width, original.Height);
+
+            using (Graphics g = Graphics.FromImage(processed))
+            {
+                g.DrawImage(original, new Rectangle(0, 0, processed.Width, processed.Height));
+            }
+
             BasicDIP.Threshold(ref original, ref processed, 200);
             return processed;
         }
@@ -473,16 +502,15 @@ namespace digital_image_processing
                 }
             }
 
-            // Coin classification logic
             Dictionary<string, double> results = new Dictionary<string, double>
-    {
-        { "5 Peso", 0 },
-        { "1 Peso", 0 },
-        { "25 Centavo", 0 },
-        { "10 Centavo", 0 },
-        { "5 Centavo", 0 },
-        { "Value", 0 }
-    };
+        {
+            { "5 Peso", 0 },
+            { "1 Peso", 0 },
+            { "25 Centavo", 0 },
+            { "10 Centavo", 0 },
+            { "5 Centavo", 0 },
+            { "Value", 0 }
+        };
 
             foreach (var coinPoints in objects)
             {
@@ -514,10 +542,9 @@ namespace digital_image_processing
                     results["Value"] += 0.05;
                 }
 
-                // Color the detected coin area for visualization
                 foreach (Point p in coinPoints)
                 {
-                    image.SetPixel(p.X, p.Y, Color.Red);
+                    image.SetPixel(p.X, p.Y, Color.Black);
                 }
             }
 
@@ -555,5 +582,6 @@ namespace digital_image_processing
                 }
             }
         }
+
     }
     }

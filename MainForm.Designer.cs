@@ -54,6 +54,7 @@
             this.btnSmoothing = new System.Windows.Forms.Button();
             this.btnCoinCounter = new System.Windows.Forms.Button();
             this.textBox8 = new System.Windows.Forms.TextBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.picOriginalBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picResultBox)).BeginInit();
             this.SuspendLayout();
@@ -403,12 +404,21 @@
             this.textBox8.Text = "New Feature!";
             this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(442, 192);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(214, 30);
+            this.progressBar.TabIndex = 27;
+            this.progressBar.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::digital_image_processing.Properties.Resources.background1;
             this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.btnCoinCounter);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.btnSmoothing);
@@ -477,6 +487,7 @@
         private System.Windows.Forms.Button btnSmoothing;
         private System.Windows.Forms.Button btnCoinCounter;
         private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
 
