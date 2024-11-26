@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="basicDIP.cs" />
+    <Compile Include="Circle.cs" />
     <Compile Include="CITLIBFilters.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceManager.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
@@ -34,7 +35,7 @@ namespace digital_image_processing
 
     public partial class MainForm : Form
     {
-        private SubtractForm f2; 
+        private SubtractForm f2;
         private bool isVideoOn = false;
         private FilterType currentFilter;
         private EffectType currentEffect;
@@ -64,7 +65,7 @@ namespace digital_image_processing
         {
             filterTimer = new Timer
             {
-                Interval = 500 
+                Interval = 500
             };
             filterTimer.Tick += (s, e) => ProcessVideoFrame();
         }
@@ -116,7 +117,7 @@ namespace digital_image_processing
 
             if (filterTimer.Enabled)
             {
-                ProcessVideoFrame(); 
+                ProcessVideoFrame();
             }
         }
 
@@ -134,7 +135,7 @@ namespace digital_image_processing
             switch (currentFilter)
             {
                 case FilterType.GreyScale:
-                    BitmapFilter.GrayScale(frame); 
+                    BitmapFilter.GrayScale(frame);
                     break;
                 case FilterType.Sepia:
                     BitmapFilter.Sepia(frame);
@@ -144,7 +145,7 @@ namespace digital_image_processing
                     break;
                 case FilterType.Histogram:
                     Bitmap histogramImage = null;
-                    BasicDIP.Histogram(ref frame, ref histogramImage);  
+                    BasicDIP.Histogram(ref frame, ref histogramImage);
                     frame = histogramImage;
                     break;
                 default:
@@ -211,7 +212,7 @@ namespace digital_image_processing
         // Save Result Image or a Frame from a Video
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
+
             Bitmap imageToSave = isVideoOn ? CloneCurrentFrame() : (Bitmap)picResultBox.Image;
 
             if (imageToSave != null)
@@ -240,9 +241,9 @@ namespace digital_image_processing
         {
             if (picResultBox.Image != null)
             {
-                return new Bitmap(picResultBox.Image); 
+                return new Bitmap(picResultBox.Image);
             }
-            return null; 
+            return null;
         }
 
         // PART 1: For DIP - Copy, GrayScale, Inversion, Histogram, Sepia
@@ -326,7 +327,7 @@ namespace digital_image_processing
             switch (currentEffect)
             {
                 case EffectType.Smoothing:
-                    BitmapFilter.Smooth(image, 1);  
+                    BitmapFilter.Smooth(image, 1);
                     break;
 
                 case EffectType.GaussianBlur:
@@ -422,6 +423,137 @@ namespace digital_image_processing
 
         private void btnCoinCounter_Click(object sender, EventArgs e)
         {
+            if (picOriginalBox.Image == null)
+            {
+                MessageBox.Show("Please load an image first.", "No Image Loaded", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                Bitmap originalImage = (Bitmap)picOriginalBox.Image.Clone();
+                Bitmap processedImage = CleanImage(originalImage);
+                Dictionary<string, double> coinResults = ClassifyPesoCoins(processedImage);
+                double totalValue = coinResults["Value"];
+                MessageBox.Show($"Total Coin Value: ₱{totalValue:F2}", "Coin Counter", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                picResultBox.Image = processedImage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private Bitmap CleanImage(Bitmap original)
+        {
+            Bitmap processed = new Bitmap(original);
+            BasicDIP.Threshold(ref original, ref processed, 200);
+            return processed;
+        }
+
+        private Dictionary<string, double> ClassifyPesoCoins(Bitmap image)
+        {
+            List<List<Point>> objects = new List<List<Point>>();
+            bool[,] visited = new bool[image.Width, image.Height];
+            int blackThreshold = 20;
+
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    if (image.GetPixel(x, y).R == 0 && !visited[x, y])
+                    {
+                        List<Point> coinPoints = new List<Point>();
+                        FindPoints(image, x, y, visited, blackThreshold, coinPoints);
+                        if (coinPoints.Count > 0)
+                        {
+                            objects.Add(coinPoints);
+                        }
+                    }
+                }
+            }
+
+            // Coin classification logic
+            Dictionary<string, double> results = new Dictionary<string, double>
+    {
+        { "5 Peso", 0 },
+        { "1 Peso", 0 },
+        { "25 Centavo", 0 },
+        { "10 Centavo", 0 },
+        { "5 Centavo", 0 },
+        { "Value", 0 }
+    };
+
+            foreach (var coinPoints in objects)
+            {
+                int size = coinPoints.Count;
+
+                if (size > 18001)
+                {
+                    results["5 Peso"]++;
+                    results["Value"] += 5;
+                }
+                else if (size > 15001)
+                {
+                    results["1 Peso"]++;
+                    results["Value"] += 1;
+                }
+                else if (size > 11001)
+                {
+                    results["25 Centavo"]++;
+                    results["Value"] += 0.25;
+                }
+                else if (size > 8001)
+                {
+                    results["10 Centavo"]++;
+                    results["Value"] += 0.10;
+                }
+                else if (size > 6500)
+                {
+                    results["5 Centavo"]++;
+                    results["Value"] += 0.05;
+                }
+
+                // Color the detected coin area for visualization
+                foreach (Point p in coinPoints)
+                {
+                    image.SetPixel(p.X, p.Y, Color.Red);
+                }
+            }
+
+            return results;
+        }
+
+        private void FindPoints(Bitmap image, int startX, int startY, bool[,] visited, int threshold, List<Point> contour)
+        {
+            Stack<Point> stack = new Stack<Point>();
+            stack.Push(new Point(startX, startY));
+            visited[startX, startY] = true;
+
+            while (stack.Count > 0)
+            {
+                Point p = stack.Pop();
+                contour.Add(p);
+
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    for (int dx = -1; dx <= 1; dx++)
+                    {
+                        int nx = p.X + dx;
+                        int ny = p.Y + dy;
+
+                        if (nx >= 0 && ny >= 0 && nx < image.Width && ny < image.Height && !visited[nx, ny])
+                        {
+                            Color neighborColor = image.GetPixel(nx, ny);
+                            if (neighborColor.R < threshold)
+                            {
+                                visited[nx, ny] = true;
+                                stack.Push(new Point(nx, ny));
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-}
+    }
