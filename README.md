@@ -28,4 +28,4 @@ You can also apply the effects and filters **live** to your webcam feed in real-
 2. **Select a filter / an effect** 
 3. **See the changes** 
 
-[![webcamImg](Resources/webcamImg.png)](Resources/webcamImg.png)
+[![webcamImg](Resources/webcamImg.PNG)](Resources/webcamImg.PNG)
